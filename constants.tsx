@@ -1,4 +1,3 @@
-
 import { Lesson, Scenario, TrackLevel, Persona, AITool } from './types';
 import { Briefcase, GraduationCap, PenTool, TrendingUp, User } from 'lucide-react';
 
@@ -82,6 +81,54 @@ export const AI_TOOLS: AITool[] = [
     website: 'https://gamma.app',
     coachTip: 'Don\'t start from a blank slide. Use Gamma to create the first draft, then edit the text to add your personal touch.',
     logoColor: 'bg-yellow-600'
+  },
+  {
+    id: 't7',
+    name: 'Midjourney',
+    tagline: 'Professional Art Generator',
+    category: 'Visuals',
+    description: 'The most powerful AI art generator. It requires Discord to use, but creates photo-realistic images, logos, and illustrations.',
+    bestFor: ['Designers', 'Creatives', 'Marketing'],
+    pricing: 'Paid',
+    website: 'https://www.midjourney.com',
+    coachTip: 'Use specific style words like "Cinematic", "Vector Art", or "Shot on 35mm" to get the best results.',
+    logoColor: 'bg-slate-800'
+  },
+  {
+    id: 't8',
+    name: 'Zapier AI',
+    tagline: 'The Automation Builder',
+    category: 'Productivity',
+    description: 'Connects your apps together. "If I get a lead in Gmail, add it to my spreadsheet." Now you can build these flows just by chatting.',
+    bestFor: ['Business', 'Freelance', 'Tech'],
+    pricing: 'Freemium',
+    website: 'https://zapier.com',
+    coachTip: 'Start simple. Automate one boring task you do every day, like saving email attachments to Google Drive.',
+    logoColor: 'bg-orange-500'
+  },
+  {
+    id: 't9',
+    name: 'Notion AI',
+    tagline: 'The Second Brain',
+    category: 'Productivity',
+    description: 'A workspace for notes and projects. The AI can summarize your messy notes, translate them, or rewrite them to be more professional.',
+    bestFor: ['Students', 'Startups', 'Writers'],
+    pricing: 'Freemium',
+    website: 'https://notion.so',
+    coachTip: 'Use the "Ask AI" feature to query your own notes. "What did we decide about the budget last week?"',
+    logoColor: 'bg-slate-900'
+  },
+  {
+    id: 't10',
+    name: 'Descript',
+    tagline: 'Edit Video Like Text',
+    category: 'Audio',
+    description: 'Upload a video, and it generates a transcript. If you delete a word in the text, it cuts that part out of the video automatically.',
+    bestFor: ['Podcasters', 'Marketing', 'Teachers'],
+    pricing: 'Freemium',
+    website: 'https://descript.com',
+    coachTip: 'Use the "Studio Sound" feature to remove background noise and make your voice sound professional with one click.',
+    logoColor: 'bg-blue-500'
   }
 ];
 
@@ -103,6 +150,10 @@ Think of **Generative AI** (like Gemini or ChatGPT) like a very fast, very well-
 1.  **Training (The Cookbook Library):** Just as a chef reads thousands of cookbooks to learn recipes, AI "reads" billions of pages from the internet to learn the patterns of human language. It learns that "Thank" is usually followed by "You".
 2.  **The Prompt (The Order Ticket):** This is your instruction. If you just say "Make food," the chef is confused. If you say "Make a spicy taco with extra cheese and a side of guac," the chef knows exactly what to do.
 3.  **Generation (Cooking Fresh):** The chef creates a *new* dish based on what they know. They don't just microwave a frozen meal (copy-paste from Google); they build it ingredient by ingredient. This is why it's called **Generative** AI—it generates something new every time.
+
+\`\`\`interactive-chef
+// This block renders the Interactive Chef Diagram
+\`\`\`
 
 > AI doesn't copy and paste. It creates something new every time, just like a chef cooking a meal from scratch.
 
@@ -252,6 +303,11 @@ Early AI only understood text. Modern AI is **Multimodal**. This means it has ey
 *   **Audio:** You can speak to it, and it speaks back with emotion, intonation, and laughter. It can listen to a meeting and write minutes.
 *   **Video:** Some advanced models can watch a YouTube video and summarize the key points or answer questions about what happened at the 5-minute mark.
 
+### Listen to AI
+Modern AI voices are almost indistinguishable from humans. They breathe, pause, and intonate.
+
+[Play Audio Sample](audio:https://actions.google.com/sounds/v1/science_fiction/robot_radio_chatter.ogg)
+
 ### Why it matters
 You don't always have to type! If you can't describe a strange noise your car is making, record it. If you can't describe a bug on your screen, screenshot it.
     `,
@@ -273,7 +329,7 @@ You don't always have to type! If you can't describe a strange noise your car is
     description: 'When the AI lies to you (confidently).',
     content: `
 ### The People Pleaser
-AI models are trained to complete patterns. Sometimes, they prioritize *sounding* correct over *being* correct. This is called a **Hallucination**.
+AI models are trained to complete patterns. Sometimes, they prioritize *sounding* correct over *being* correct. This is the **Hallucination**.
 
 ![Mirage illusion](https://images.unsplash.com/photo-1518640027989-a30d5d7e498e?auto=format&fit=crop&w=800&q=80)
 
@@ -832,5 +888,65 @@ export const SCENARIOS: Scenario[] = [
     badExample: 'Fix these notes.',
     goodExample: 'Format these raw notes into a professional meeting minute document. Identify who is responsible for which task.',
     explanation: 'Structuring output into specific categories (Decisions, Actions) makes the AI result immediately usable.'
+  },
+  {
+    id: 's5',
+    category: 'Industry Playbooks',
+    industry: 'Marketing',
+    title: 'Content Repurposing',
+    description: 'Turn one blog post into 10 pieces of content.',
+    templates: [
+      'Read this blog post [Paste Link/Text]. Create 3 tweets, 1 LinkedIn post, and a script for a 30-second TikTok video based on it.',
+      'Rewrite this paragraph to be punchier and more engaging for Instagram captions.',
+      'Extract 5 key quotes from this transcript.'
+    ],
+    badExample: 'Make tweets from this.',
+    goodExample: 'Act as a social media manager. Create a thread of 5 tweets summarizing this article. Use emojis, keep it under 280 chars per tweet, and end with a question.',
+    explanation: 'Platform-specific constraints (280 chars) and engagement tactics (end with a question) are key.'
+  },
+  {
+    id: 's6',
+    category: 'Work',
+    industry: 'Tech',
+    title: 'Vibe Coding / Excel Help',
+    description: 'Write formulas or code without knowing the syntax.',
+    templates: [
+      'I have a spreadsheet. Column A is Dates, Column B is Sales. Write an Excel formula to sum Sales if the Date is in January.',
+      'Write a Python script to rename all PDF files in a folder to include today\'s date.',
+      'Explain what this error message means in simple terms: [Paste Error].'
+    ],
+    badExample: 'Excel help.',
+    goodExample: 'I need an Excel formula for cell C1. Check if A1 is greater than 100. If yes, write "Bonus", if no, write "Standard".',
+    explanation: 'Describing the logic step-by-step allows the AI to generate the exact syntax you need.'
+  },
+  {
+    id: 's7',
+    category: 'Industry Playbooks',
+    industry: 'HR',
+    title: 'Job Descriptions & Screening',
+    description: 'Draft inclusive job posts and screen resumes faster.',
+    templates: [
+      'Draft a job description for a [Role] at a [Company Type]. Tone: Fun, inclusive, and professional. Highlight these benefits: [List Benefits].',
+      'Here is a resume [Paste Text] and a job description [Paste Text]. Rate the match on a scale of 1-10 and list missing skills.',
+      'Write 5 interview questions to test for [Specific Skill].'
+    ],
+    badExample: 'Write a job post for a manager.',
+    goodExample: 'Draft a job description for a Remote Project Manager. Emphasize "Async communication" and "Work-life balance". Avoid corporate jargon.',
+    explanation: 'Specifying the culture (Async, Work-life balance) helps attract the right candidates.'
+  },
+  {
+    id: 's8',
+    category: 'Industry Playbooks',
+    industry: 'Business',
+    title: 'Strategy & SWOT Analysis',
+    description: 'Brainstorm business strategies and risks.',
+    templates: [
+      'Act as a business consultant. Perform a SWOT analysis for a local coffee shop competing with Starbucks.',
+      'Critique this business idea: [Idea]. Play "Devil\'s Advocate" and list 5 reasons it might fail.',
+      'What are 3 potential revenue streams for a [Business Type]?'
+    ],
+    badExample: 'Is my idea good?',
+    goodExample: 'Act as a skeptical investor. Review this pitch for a dog-walking app. Point out 3 holes in the monetization strategy.',
+    explanation: 'Asking the AI to be a "Skeptic" or "Devil\'s Advocate" prevents it from just being nice and agreeing with you.'
   }
 ];

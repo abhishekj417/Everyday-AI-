@@ -27,7 +27,7 @@ export interface Lesson {
 export interface Scenario {
   id: string;
   category: 'Work' | 'Personal' | 'Industry Playbooks';
-  industry?: 'Sales' | 'Education' | 'Freelance' | 'Business' | 'Student';
+  industry?: 'Sales' | 'Education' | 'Freelance' | 'Business' | 'Student' | 'Marketing' | 'Tech' | 'HR';
   title: string;
   description: string;
   templates: string[];

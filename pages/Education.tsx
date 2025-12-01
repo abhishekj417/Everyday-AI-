@@ -1,12 +1,105 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { LESSONS } from '../constants';
 import { TrackLevel, Lesson } from '../types';
 import LessonCard from '../components/LessonCard';
 import QuizModal from '../components/QuizModal';
-import { BookOpen, CheckCircle2, Play, AlertCircle, ExternalLink } from 'lucide-react';
+import { BookOpen, CheckCircle2, AlertCircle, ExternalLink, ChefHat, ScrollText, Utensils, Play, Pause, Volume2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { Components } from 'react-markdown';
+
+// --- Interactive Components ---
+
+const ChefAnalogy = () => {
+  const [step, setStep] = useState(0);
+  
+  const steps = [
+    {
+      title: "1. Training",
+      icon: BookOpen,
+      desc: "The Chef reads thousands of cookbooks (internet data) to learn patterns.",
+      color: "bg-blue-100 text-blue-600 border-blue-200"
+    },
+    {
+      title: "2. The Prompt",
+      icon: ScrollText,
+      desc: "You give an order: 'Make me a spicy taco'. This is your instruction.",
+      color: "bg-orange-100 text-orange-600 border-orange-200"
+    },
+    {
+      title: "3. Generation",
+      icon: Utensils,
+      desc: "The Chef cooks a NEW dish from scratch based on knowledge + your order.",
+      color: "bg-emerald-100 text-emerald-600 border-emerald-200"
+    }
+  ];
+
+  return (
+    <div className="my-8 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+      <h4 className="font-bold text-center mb-6 text-slate-800">Tap a step to see how it works:</h4>
+      <div className="flex flex-col md:flex-row gap-4 justify-between mb-6">
+        {steps.map((s, idx) => (
+          <button
+            key={idx}
+            onClick={() => setStep(idx)}
+            className={`flex-1 p-4 rounded-xl border-2 transition-all flex flex-col items-center gap-2 ${
+              step === idx 
+                ? s.color + ' scale-105 shadow-md ring-2 ring-offset-2 ring-indigo-100' 
+                : 'bg-slate-50 border-slate-100 text-slate-400 hover:bg-slate-100'
+            }`}
+          >
+            <s.icon size={28} />
+            <span className="font-bold text-sm">{s.title}</span>
+          </button>
+        ))}
+      </div>
+      <div className="bg-slate-50 rounded-xl p-6 text-center border-t border-slate-100 animate-in fade-in duration-300">
+        <p className="text-lg text-slate-700 font-medium">{steps[step].desc}</p>
+      </div>
+    </div>
+  );
+};
+
+const AudioPlayer = ({ src }: { src: string }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const togglePlay = () => {
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  return (
+    <div className="my-6 bg-indigo-900 rounded-xl p-4 flex items-center gap-4 text-white shadow-lg max-w-md mx-auto">
+      <button 
+        onClick={togglePlay}
+        className="w-12 h-12 bg-white text-indigo-900 rounded-full flex items-center justify-center hover:scale-105 transition active:scale-95"
+      >
+        {isPlaying ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" className="ml-1" />}
+      </button>
+      <div className="flex-1">
+        <p className="font-bold text-sm mb-1">AI Voice Sample</p>
+        <div className="h-1.5 bg-indigo-700 rounded-full overflow-hidden">
+          <div className={`h-full bg-indigo-300 rounded-full ${isPlaying ? 'animate-[pulse_1s_ease-in-out_infinite] w-3/4' : 'w-0 transition-all duration-300'}`} />
+        </div>
+      </div>
+      <Volume2 size={20} className="text-indigo-300" />
+      <audio 
+        ref={audioRef} 
+        src={src} 
+        onEnded={() => setIsPlaying(false)} 
+        className="hidden"
+      />
+    </div>
+  );
+};
+
+// --- Main Component ---
 
 const Education: React.FC = () => {
   const [activeTrack, setActiveTrack] = useState<TrackLevel>(TrackLevel.Beginner);
@@ -35,7 +128,7 @@ const Education: React.FC = () => {
       </div>
     ),
     
-    // Custom Link Renderer (Handles Video syntax: [Label](video:url))
+    // Custom Link Renderer (Handles Video & Audio syntax)
     a: ({ node, href, children, ...props }) => {
       if (href?.startsWith('video:')) {
         const videoUrl = href.replace('video:', '');
@@ -56,6 +149,10 @@ const Education: React.FC = () => {
           </div>
         );
       }
+      if (href?.startsWith('audio:')) {
+        const audioUrl = href.replace('audio:', '');
+        return <AudioPlayer src={audioUrl} />;
+      }
       return (
         <a 
           href={href} 
@@ -67,6 +164,18 @@ const Education: React.FC = () => {
           {children} <ExternalLink size={12} />
         </a>
       );
+    },
+
+    // Custom Code Block Renderer for Interactive Components
+    code(props) {
+      const {children, className, node, ...rest} = props
+      const match = /language-(\w+)/.exec(className || '')
+      
+      if (match && match[1] === 'interactive-chef') {
+        return <ChefAnalogy />;
+      }
+      
+      return <code className={className} {...rest}>{children}</code>
     },
 
     // Interactive Keyword Styling
