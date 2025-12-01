@@ -36,6 +36,19 @@ export interface Scenario {
   explanation: string;
 }
 
+export interface AITool {
+  id: string;
+  name: string;
+  tagline: string;
+  category: 'Assistant' | 'Visuals' | 'Research' | 'Productivity' | 'Audio';
+  description: string;
+  bestFor: string[];
+  pricing: 'Free' | 'Freemium' | 'Paid';
+  website: string;
+  coachTip: string;
+  logoColor: string; // Tailwind class for generic logo placeholder
+}
+
 export interface ChatMessage {
   id: string;
   role: 'user' | 'model';

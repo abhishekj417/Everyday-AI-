@@ -1,5 +1,5 @@
 
-import { Lesson, Scenario, TrackLevel, Persona } from './types';
+import { Lesson, Scenario, TrackLevel, Persona, AITool } from './types';
 import { Briefcase, GraduationCap, PenTool, TrendingUp, User } from 'lucide-react';
 
 export const PERSONAS: Persona[] = [
@@ -8,6 +8,81 @@ export const PERSONAS: Persona[] = [
   { id: 'freelance', role: 'Freelancer', painPoint: 'Proposals take too long', goal: 'Speed up research & proposals', icon: PenTool },
   { id: 'business', role: 'Business Owner', painPoint: 'Managing schedule & reports', goal: 'Automate reporting', icon: Briefcase },
   { id: 'student', role: 'Student', painPoint: 'Need study help', goal: 'Homework aid & clarifying concepts', icon: User },
+];
+
+export const AI_TOOLS: AITool[] = [
+  {
+    id: 't1',
+    name: 'Google Gemini',
+    tagline: 'The Google Workspace Wizard',
+    category: 'Assistant',
+    description: 'An advanced AI that integrates directly with Google Docs, Gmail, and Drive. It creates text, analyzes images, and can even read your messy documents.',
+    bestFor: ['Everyone', 'Business', 'Students'],
+    pricing: 'Freemium',
+    website: 'https://gemini.google.com',
+    coachTip: 'Use the "Upload" button to attach a PDF or image. Ask it to "Summarize this" or "Find the due date". It saves hours of reading.',
+    logoColor: 'bg-blue-600'
+  },
+  {
+    id: 't2',
+    name: 'Perplexity',
+    tagline: 'The Reliable Research Assistant',
+    category: 'Research',
+    description: 'Think of this as Google Search meets AI. Instead of giving you 10 blue links, it reads the websites for you and writes a summarized answer with citations.',
+    bestFor: ['Students', 'Researchers', 'Freelancers'],
+    pricing: 'Freemium',
+    website: 'https://www.perplexity.ai',
+    coachTip: 'Use this when accuracy matters. It always cites its sources so you can verify facts easily.',
+    logoColor: 'bg-teal-600'
+  },
+  {
+    id: 't3',
+    name: 'Canva Magic Studio',
+    tagline: 'Design for Non-Designers',
+    category: 'Visuals',
+    description: 'Canva now has AI built-in. You can type "A poster for a bake sale" and it will generate the actual design, images, and text for you.',
+    bestFor: ['Marketers', 'Small Business', 'Teachers'],
+    pricing: 'Freemium',
+    website: 'https://www.canva.com',
+    coachTip: 'Try "Magic Expand" to fix photos that are too zoomed in, or "Magic Edit" to change a red shirt to a blue one instantly.',
+    logoColor: 'bg-purple-600'
+  },
+  {
+    id: 't4',
+    name: 'Otter.ai',
+    tagline: 'The Meeting Secretary',
+    category: 'Audio',
+    description: 'Connects to your Zoom/Teams calls and writes a perfect transcript. It also identifies who said what and generates a summary.',
+    bestFor: ['Sales', 'Managers', 'Freelancers'],
+    pricing: 'Freemium',
+    website: 'https://otter.ai',
+    coachTip: 'Don\'t take notes during meetings. Let Otter do it, so you can focus on listening and making eye contact.',
+    logoColor: 'bg-indigo-600'
+  },
+  {
+    id: 't5',
+    name: 'Goblin.tools',
+    tagline: 'The Overwhelm Crusher',
+    category: 'Productivity',
+    description: 'A super simple app designed for neurodivergent brains. It breaks down big, scary tasks (like "Move house") into tiny, manageable steps.',
+    bestFor: ['Everyone', 'ADHD', 'Students'],
+    pricing: 'Free',
+    website: 'https://goblin.tools',
+    coachTip: 'Use the "Magic To-Do" feature. Type one big task, click the magic wand, and watch it generate a checklist for you.',
+    logoColor: 'bg-emerald-600'
+  },
+  {
+    id: 't6',
+    name: 'Gamma',
+    tagline: 'Instant Presentations',
+    category: 'Visuals',
+    description: 'Hate making PowerPoint slides? Type your topic into Gamma, and it generates a beautiful slide deck with text, images, and formatting in seconds.',
+    bestFor: ['Business', 'Sales', 'Students'],
+    pricing: 'Freemium',
+    website: 'https://gamma.app',
+    coachTip: 'Don\'t start from a blank slide. Use Gamma to create the first draft, then edit the text to add your personal touch.',
+    logoColor: 'bg-yellow-600'
+  }
 ];
 
 export const LESSONS: Lesson[] = [
